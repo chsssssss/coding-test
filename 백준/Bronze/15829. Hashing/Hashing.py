@@ -8,4 +8,4 @@ for i in range(L):
     value = ord(a[i]) - ord('a') + 1
     result += (value * r**i) % M
 
-print(result)
+print(result % M)
