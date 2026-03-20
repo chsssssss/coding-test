@@ -10,7 +10,7 @@ for _ in range(N):
 
 for key, val in stu.items():
     if val > K:
-        result += (val + 1) // K
+        result += (val + K - 1) // K
     else:
         result += 1
 
