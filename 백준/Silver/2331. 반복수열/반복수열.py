@@ -1,17 +1,16 @@
 A, P = map(int, input().split())
-D = []
+visited = [0] * 250000
 
-i = 0
-while True:
-    next_val = 0
-    if A in D:
-        print(D.index(A))
-        break
-    else:
-        D.append(A)
+def get_next(n, p):
+    return sum(int(digit) ** p for digit in str(n))
+
+def dfs(n, count):
+    if visited[n] != 0:
+        return visited[n] - 1
     
-    for j in str(A):
-        next_val += int(j) ** P
-    A = next_val
-    i += 1
+    visited[n] = count
 
+    next = get_next(n, P)
+    return dfs(next, count + 1)
+
+print(dfs(A, 1))
