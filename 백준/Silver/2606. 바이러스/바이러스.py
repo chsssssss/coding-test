@@ -1,20 +1,17 @@
-def dfs(v):
-    visited[v] = True
-    count = 1
-    for neighbor in graph[v]:
-        if  not visited[neighbor]:
-            count += dfs(neighbor)
-    return count
+V = int(input())
+E = int(input())
+graph = [[] * (V + 1) for _ in range(V + 1)]
+edges = [map(int, input().split()) for _ in range(E)]
+visited = [False] * (V + 1)
+for x, y in edges:
+    graph[x].append(y)
+    graph[y].append(x)
 
-N = int(input())
-M = int(input())
-visited = [False] * (N + 1)
+def dfs(node):
+    visited[node] = True
+    for next in graph[node]:
+        if not visited[next]:
+            dfs(next)
 
-graph = [[] for _ in range(N + 1)]
-
-for _ in range(M):
-    a, b = map(int, input().split())
-    graph[a].append(b)
-    graph[b].append(a)
-    
-print(dfs(1) - 1)
+dfs(1)
+print(visited.count(True)-1)
