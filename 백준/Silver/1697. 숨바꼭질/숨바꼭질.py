@@ -7,11 +7,15 @@ visited = [0] * MAX
 def bfs(start):
     queue = deque([start])
     while queue:
-        pos = queue.popleft()
-        if pos == K:
-            return visited[pos]
-        for next_pos in [pos - 1, pos + 1, pos * 2]:
-            if 0 <= next_pos < MAX and visited[next_pos] == 0:
-                visited[next_pos] = visited[pos] + 1
-                queue.append(next_pos)
-print(bfs(N))
+        x = queue.popleft()
+
+        if x == K:
+            print(visited[x])
+            break
+
+        for next in [x - 1, x + 1, 2 * x]:
+            if 0 <= next < MAX and visited[next] == 0:
+                queue.append(next)
+                visited[next] = visited[x] + 1
+
+bfs(N)
